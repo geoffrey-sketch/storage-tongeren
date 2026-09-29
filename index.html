@@ -10,6 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+  .hero__art img{display:block;width:100%;height:auto;aspect-ratio:520/400;object-fit:cover;border-radius:8px}
+  .photos{padding:2rem 0 0}
+  .photos__grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .photos__grid img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:8px}
+  @media (max-width:600px){.photos__grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <a class="skip" href="#inhoud">Naar de inhoud</a>
@@ -62,61 +69,7 @@
       </div>
 
       <div class="hero__art">
-        <svg viewBox="0 0 520 400" role="img" aria-label="Rij opslagboxen met rolluikdeuren, één box staat open">
-          <rect x="0" y="40" width="520" height="300" fill="#112a47"/>
-          <rect x="0" y="340" width="520" height="60" fill="#0d2039"/>
-          <line x1="0" y1="340" x2="520" y2="340" stroke="#22406a" stroke-width="2"/>
-
-          <!-- box links -->
-          <g>
-            <rect x="26" y="80" width="140" height="260" fill="#16365c" stroke="#2a4f7f" stroke-width="2"/>
-            <g fill="#1d4270">
-              <rect x="34" y="112" width="124" height="14" rx="3"/><rect x="34" y="132" width="124" height="14" rx="3"/>
-              <rect x="34" y="152" width="124" height="14" rx="3"/><rect x="34" y="172" width="124" height="14" rx="3"/>
-              <rect x="34" y="192" width="124" height="14" rx="3"/><rect x="34" y="212" width="124" height="14" rx="3"/>
-              <rect x="34" y="232" width="124" height="14" rx="3"/><rect x="34" y="252" width="124" height="14" rx="3"/>
-              <rect x="34" y="272" width="124" height="14" rx="3"/><rect x="34" y="292" width="124" height="14" rx="3"/>
-              <rect x="34" y="312" width="124" height="14" rx="3"/>
-            </g>
-            <rect x="80" y="216" width="32" height="6" rx="3" fill="#ffcb2b"/>
-            <rect x="26" y="80" width="140" height="22" fill="#1450d8"/>
-            <text x="96" y="96" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#ffffff">B12</text>
-          </g>
-
-          <!-- open box in het midden -->
-          <g>
-            <rect x="182" y="80" width="156" height="260" fill="#081627" stroke="#2a4f7f" stroke-width="2"/>
-            <g fill="#274a78">
-              <rect x="190" y="92" width="140" height="12" rx="3"/><rect x="190" y="106" width="140" height="12" rx="3"/>
-              <rect x="190" y="120" width="140" height="12" rx="3"/>
-            </g>
-            <!-- dozen -->
-            <rect x="196" y="250" width="66" height="50" fill="#e8eef8"/><rect x="196" y="250" width="66" height="8" fill="#c9d8f5"/>
-            <rect x="268" y="264" width="58" height="36" fill="#dbe6fb"/>
-            <rect x="204" y="206" width="52" height="42" fill="#f4f7fc"/>
-            <rect x="262" y="222" width="46" height="40" fill="#e8eef8"/>
-            <rect x="196" y="300" width="130" height="40" fill="#cfdcf2"/>
-            <line x1="196" y1="320" x2="326" y2="320" stroke="#adc1e0" stroke-width="2"/>
-            <rect x="182" y="80" width="156" height="22" fill="#ffcb2b"/>
-            <text x="260" y="96" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#0b1e33">B14 vrij</text>
-          </g>
-
-          <!-- box rechts -->
-          <g>
-            <rect x="354" y="80" width="140" height="260" fill="#16365c" stroke="#2a4f7f" stroke-width="2"/>
-            <g fill="#1d4270">
-              <rect x="362" y="112" width="124" height="14" rx="3"/><rect x="362" y="132" width="124" height="14" rx="3"/>
-              <rect x="362" y="152" width="124" height="14" rx="3"/><rect x="362" y="172" width="124" height="14" rx="3"/>
-              <rect x="362" y="192" width="124" height="14" rx="3"/><rect x="362" y="212" width="124" height="14" rx="3"/>
-              <rect x="362" y="232" width="124" height="14" rx="3"/><rect x="362" y="252" width="124" height="14" rx="3"/>
-              <rect x="362" y="272" width="124" height="14" rx="3"/><rect x="362" y="292" width="124" height="14" rx="3"/>
-              <rect x="362" y="312" width="124" height="14" rx="3"/>
-            </g>
-            <rect x="408" y="216" width="32" height="6" rx="3" fill="#ffcb2b"/>
-            <rect x="354" y="80" width="140" height="22" fill="#1450d8"/>
-            <text x="424" y="96" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="#ffffff">B16</text>
-          </g>
-        </svg>
+        <img src="assets/img/foto2.jpg" alt="" fetchpriority="high">
       </div>
     </div>
   </section>
@@ -139,6 +92,13 @@
         <div class="facts__value">Bewaakt</div>
         <div class="facts__label">camerabewaking en toegangscontrole</div>
       </div>
+    </div>
+  </section>
+
+  <section class="photos">
+    <div class="wrap photos__grid">
+      <img src="assets/img/foto3.jpg" alt="" loading="lazy">
+      <img src="assets/img/foto4.jpg" alt="" loading="lazy">
     </div>
   </section>
 
