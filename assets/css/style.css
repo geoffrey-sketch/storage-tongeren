@@ -172,6 +172,29 @@ img {
   margin-top: 1.5rem;
 }
 
+/* ---------- promo banner ---------- */
+
+.promo-banner {
+  background: var(--signal);
+  color: var(--navy);
+}
+
+.promo-banner .wrap {
+  padding: 0.55rem 1.5rem;
+  text-align: center;
+}
+
+.promo-banner p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.promo-banner a {
+  color: var(--navy);
+  text-decoration: underline;
+}
+
 /* ---------- header ---------- */
 
 .site-header {
