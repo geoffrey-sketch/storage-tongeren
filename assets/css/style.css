@@ -172,6 +172,14 @@ img {
   margin-top: 1.5rem;
 }
 
+/* ---------- sticky top (banner + header together) ---------- */
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 /* ---------- promo banner ---------- */
 
 .promo-banner {
@@ -198,9 +206,6 @@ img {
 /* ---------- header ---------- */
 
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--line);
