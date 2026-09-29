@@ -161,8 +161,9 @@ img {
 }
 
 .btn--sm {
-  padding: 0.55rem 1.1rem;
-  font-size: 0.9rem;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  white-space: nowrap;
 }
 
 .btn-row {
@@ -242,13 +243,14 @@ img {
 .nav {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 1.25rem;
   font-weight: 600;
-  font-size: 0.98rem;
+  font-size: 0.95rem;
 }
 
 .nav a {
   color: var(--navy);
+  white-space: nowrap;
 }
 
 .nav a[aria-current="page"] {
