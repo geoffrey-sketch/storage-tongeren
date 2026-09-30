@@ -1,7 +1,7 @@
 /* =========================================================
    Storage Tongeren — stylesheet
    Colours and fonts live in :root. Edit --blue, --navy and
-   --signal here to reskin the whole site.
+   --cta here to reskin the whole site.
    ========================================================= */
 
 :root {
@@ -12,9 +12,8 @@
   --navy-2: #112a47;
   --navy-3: #16365c;
   --navy-4: #081627;
-  --signal: #0c3d7f;
-  --signal-dark: #082a5a;
-  --yellow: #ffcb2b;
+  --cta: #fd7e14;
+  --cta-dark: #cf6710;
   --ink: #0b1e33;
   --ink-soft: #445269;
   --paper: #f4f7fc;
@@ -142,13 +141,14 @@ img {
 }
 
 .btn--signal {
-  background: var(--signal);
-  color: #fff;
+  background: var(--cta);
+  color: var(--navy);
 }
 
 .btn--signal:hover {
-  background: var(--signal-dark);
-  box-shadow: 0 8px 20px -8px rgba(12, 61, 127, 0.5);
+  background: var(--cta-dark);
+  color: var(--navy);
+  box-shadow: 0 8px 20px -8px rgba(242, 102, 29, 0.55);
 }
 
 .btn--ghost {
@@ -186,7 +186,7 @@ img {
 /* ---------- promo banner ---------- */
 
 .promo-banner {
-  background: var(--yellow);
+  background: var(--cta);
   color: var(--navy);
 }
 
@@ -239,7 +239,7 @@ img {
 }
 
 .logo__text span {
-  color: var(--signal);
+  color: var(--blue);
 }
 
 .nav {
@@ -266,7 +266,7 @@ img {
 
 .nav a.btn,
 .nav a.btn:hover {
-  color: #fff;
+  color: var(--navy);
 }
 
 .header-cta {
@@ -301,8 +301,8 @@ img {
   align-items: center;
   gap: 0.4rem;
   background: #fff;
-  color: var(--signal);
-  border: 1.5px solid var(--signal);
+  color: var(--blue);
+  border: 1.5px solid var(--blue);
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
   font-size: 0.85rem;
@@ -359,7 +359,7 @@ img {
   font-family: var(--font-head);
   font-size: 1.6rem;
   font-weight: 800;
-  color: var(--signal);
+  color: var(--blue);
 }
 
 .facts__label {
@@ -589,7 +589,7 @@ img {
 
 .step:hover::before {
   transform: scale(1.15) rotate(-8deg);
-  background: var(--signal);
+  background: var(--navy);
 }
 
 /* ---------- reasons ---------- */
@@ -870,7 +870,7 @@ img {
 }
 
 .footer__links a:hover {
-  color: var(--signal);
+  color: var(--blue);
 }
 
 .footer__bottom {
