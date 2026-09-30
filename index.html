@@ -62,26 +62,26 @@
       </div>
 
       <div class="hero__art">
-        <img src="assets/img/foto2.jpg" alt="" fetchpriority="high">
+        <img class="lightbox-img" src="assets/img/foto2.jpg" alt="De gang tussen de opslagboxen bij Super Storage" fetchpriority="high">
       </div>
     </div>
   </section>
 
   <section class="facts">
     <div class="wrap facts__grid">
-      <div class="facts__item">
+      <div class="facts__item reveal">
         <div class="facts__value">€ 15 / m²</div>
         <div class="facts__label">per maand, incl. btw</div>
       </div>
-      <div class="facts__item">
+      <div class="facts__item reveal">
         <div class="facts__value">24/7</div>
         <div class="facts__label">toegang met je eigen code</div>
       </div>
-      <div class="facts__item">
+      <div class="facts__item reveal">
         <div class="facts__value">10 °C</div>
         <div class="facts__label">minimumtemperatuur in de boxen</div>
       </div>
-      <div class="facts__item">
+      <div class="facts__item reveal">
         <div class="facts__value">Bewaakt</div>
         <div class="facts__label">camerabewaking en toegangscontrole</div>
       </div>
@@ -90,10 +90,17 @@
 
   <section class="photos">
     <div class="wrap photos__grid">
-      <img src="assets/img/foto3.jpg" alt="" loading="lazy">
-      <img src="assets/img/foto4.jpg" alt="" loading="lazy">
+      <div class="photo reveal"><img class="lightbox-img" src="assets/img/foto3.jpg" alt="Opslagruimte bij Super Storage" loading="lazy"></div>
+      <div class="photo reveal"><img class="lightbox-img" src="assets/img/foto4.jpg" alt="Opslagruimte bij Super Storage" loading="lazy"></div>
     </div>
   </section>
+
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lightbox__close" type="button" aria-label="Sluiten">&times;</button>
+    <button class="lightbox__prev" type="button" aria-label="Vorige foto">&#8249;</button>
+    <img class="lightbox__img" id="lightboxImg" src="" alt="">
+    <button class="lightbox__next" type="button" aria-label="Volgende foto">&#8250;</button>
+  </div>
 
   <section class="section section--paper" id="maatwijzer">
     <div class="wrap">
@@ -118,19 +125,19 @@
       <h2>In vier stappen geregeld</h2>
       <p class="lead measure">Je hoeft niet langs te komen om een contract te tekenen. Alles gebeurt online, en je box is meteen bruikbaar.</p>
       <div class="steps">
-        <div class="step">
+        <div class="step reveal">
           <h3>Kies je box</h3>
           <p>Je ziet online welke maten vrij zijn en wat ze per maand kosten.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <h3>Vul je gegevens in</h3>
           <p>Je kiest de startdatum en een looptijd per maand, 3 maanden of 12 maanden — hoe langer je boekt, hoe lager de maandprijs. Nadien loopt de huur automatisch per maand verder.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <h3>Betaal online</h3>
           <p>Je betaalt de eerste maand meteen af. Daarna loopt het via domiciliëring.</p>
         </div>
-        <div class="step">
+        <div class="step reveal">
           <h3>Rijd binnen</h3>
           <p>Je krijgt je toegangscode per mail en kan dezelfde dag nog je spullen brengen.</p>
         </div>
@@ -145,27 +152,27 @@
     <div class="wrap">
       <h2>Waarom hier opslaan</h2>
       <div class="reasons">
-        <div class="reason">
+        <div class="reason reveal">
           <h3>Tot aan de poort rijden</h3>
           <p>Je rijdt het terrein op, naar de achterkant van het gebouw, tot aan de poort waar het slot van Super Storage zit. Daar staan verhuiskarretjes klaar om je spullen naar binnen te brengen — ook een camionette of kleine vrachtwagen kan er droog laden en lossen.</p>
         </div>
-        <div class="reason">
+        <div class="reason reveal">
           <h3>Verwarmd, dus droog</h3>
           <p>De boxen blijven op minstens 10 °C. Meubels, elektronica en papier staan er beter dan in een garage of tuinhuis.</p>
         </div>
-        <div class="reason">
+        <div class="reason reveal">
           <h3>Alleen jij komt binnen</h3>
           <p>Toegang met je persoonlijke code, camerabewaking in de gangen en een elektronisch slot op je eigen box.</p>
         </div>
-        <div class="reason">
+        <div class="reason reveal">
           <h3>Karretjes staan klaar</h3>
           <p>Verhuiskarretjes en een brede gang, zodat je in één keer meer meeneemt dan je armen aankunnen.</p>
         </div>
-        <div class="reason">
+        <div class="reason reveal">
           <h3>Groter of kleiner tijdens de rit</h3>
           <p>Past je box niet meer bij je situatie? Dan verhuis je naar een andere maat, zolang er iets vrij is.</p>
         </div>
-        <div class="reason">
+        <div class="reason reveal">
           <h3>Lokaal en bereikbaar</h3>
           <p>We zitten in Tongeren zelf, vlak bij de invalswegen. Bel of WhatsApp en je hebt iemand van hier aan de lijn.</p>
         </div>
@@ -206,23 +213,23 @@
     <div class="wrap">
       <h2>Veelgestelde vragen</h2>
       <div class="faq">
-        <details open>
+        <details open class="reveal">
           <summary>Hoelang moet ik minimaal huren?</summary>
           <p>Je kiest bij het boeken een looptijd per maand, 3 maanden of 12 maanden — hoe langer je boekt, hoe lager de maandprijs. Na die periode loopt de huur automatisch per maand verder, tot je schriftelijk per mail opzegt vóór het einde van de lopende periode.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>Kan ik er 's nachts bij?</summary>
           <p>Ja. Je code werkt 24 uur per dag, elke dag van het jaar. Er is verlichting in de gangen en camerabewaking.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>Wat mag ik niet opslaan?</summary>
           <p>Alles wat brandgevaarlijk, ontplofbaar, bederfelijk of illegaal is, plus levende dieren. Brandstof, gasflessen en verf horen er dus niet thuis. Twijfel je over iets? Vraag het even.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>Zijn mijn spullen verzekerd?</summary>
           <p>Het gebouw is verzekerd, je eigen inboedel niet automatisch. Vaak kan je je bestaande brandpolis laten uitbreiden naar opslag buitenshuis. Vraag het na bij je makelaar.</p>
         </details>
-        <details>
+        <details class="reveal">
           <summary>Ik ben nu klant bij CityStorage Tongeren. Verandert er iets?</summary>
           <p>Alleen de naam en de facturatiegegevens. Je box, je code en je toegang blijven precies hetzelfde. Bestaande klanten krijgen hierover bericht.</p>
         </details>
