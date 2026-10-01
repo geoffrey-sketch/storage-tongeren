@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+<!-- Google tag (gtag.js) + Consent Mode v2: laadt op elke pagina, maar zet
+     pas cookies/gegevens door nadat de cookiebanner toestemming geeft.
+     De standaardstatus hieronder komt overeen met de keuze die de bezoeker
+     eerder al maakte (via lokale opslag), zodat een terugkerende bezoeker
+     niet opnieuw als "geweigerd" start. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDMTXF27YJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function () {
+    var consent = "denied";
+    try {
+      if (window.localStorage.getItem("ss_cookie_consent") === "accepted") consent = "granted";
+    } catch (e) {}
+    gtag("consent", "default", {
+      ad_storage: consent,
+      ad_user_data: consent,
+      ad_personalization: consent,
+      analytics_storage: consent
+    });
+  })();
+  gtag("js", new Date());
+  gtag("config", "G-ZDMTXF27YJ", { anonymize_ip: true });
+  gtag("config", "AW-18058037828");
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Algemene voorwaarden | Super Storage</title>
@@ -55,7 +80,7 @@
   <section class="section">
     <div class="wrap">
       <div class="notice">
-        <p><strong>Concepttekst.</strong> Dit is een werktekst en nog geen juridisch sluitende versie. Laat dit nakijken door een jurist voor je de site online zet.</p>
+        <p><strong>Concepttekst.</strong> Dit is een werktekst en nog geen juridisch sluitende versie. Laat dit nakijken door een jurist voor je de site online zet, en vul de <span class="placeholder">gele velden</span> hieronder aan.</p>
       </div>
 
       <div class="legal">
@@ -93,12 +118,7 @@
         <p>Het is niet toegestaan om brandgevaarlijke, ontplofbare, bederfelijke, levende of illegale goederen op te slaan. Super Storage kan bij overtreding de toegang weigeren en de overeenkomst beëindigen.</p>
 
         <h2>7. Aansprakelijkheid en verzekering</h2>
-        <ul>
-          <li>Het gebouw zelf is verzekerd door Super Storage.</li>
-          <li>De opgeslagen goederen zijn niet verzekerd door Super Storage. De huurder moet zijn goederen zelf verzekeren tegen onder meer brand, waterschade, diefstal en inbraak, voor hun volledige waarde. We raden de huurder aan bij zijn verzekeraar na te gaan of zijn bestaande inboedelverzekering goederen in een externe opslagruimte dekt.</li>
-          <li>Super Storage is niet aansprakelijk voor verlies van of schade aan de opgeslagen goederen, behalve bij opzet of zware fout van Super Storage of haar aangestelden.</li>
-          <li>De huurder is aansprakelijk voor schade die hij, zijn goederen of de personen die hij toegang geeft, veroorzaken aan het gebouw, de opslagruimte, andere huurders of derden.</li>
-        </ul>
+        <p>De huurder blijft zelf verantwoordelijk voor het verzekeren van de opgeslagen goederen. <span class="placeholder">[toevoegen: exacte aansprakelijkheidsregeling en eventuele optionele verzekering via Super Storage]</span>.</p>
 
         <h2>8. Toegang en veiligheid</h2>
         <p>De opslagruimtes zijn toegankelijk met een persoonlijke code, 24 uur per dag, 7 dagen per week. Super Storage kan de toegang tijdelijk beperken voor onderhoud of bij veiligheidsrisico's, met zo veel mogelijk voorafgaande verwittiging.</p>
@@ -164,10 +184,20 @@
     </div>
     <div class="footer__bottom">
       <span>&copy; <span id="jaartal">2026</span> Super Storage — Fastgoed BV — BTW BE 0628.981.850 — Millerdries 7a, 3770 Riemst</span>
-      <span><a href="algemene-voorwaarden.html" style="color:#c7d3e6">Algemene voorwaarden</a> · <a href="privacybeleid.html" style="color:#c7d3e6">Privacybeleid</a> · <a href="cookiebeleid.html" style="color:#c7d3e6">Cookiebeleid</a></span>
+      <span><a href="algemene-voorwaarden.html" >Algemene voorwaarden</a> · <a href="privacybeleid.html" >Privacybeleid</a> · <a href="cookiebeleid.html" >Cookiebeleid</a> · <button type="button" id="cookieSettingsBtn" class="footer__cookie-btn">Cookie-instellingen</button></span>
     </div>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookievoorkeuren" hidden>
+  <div class="wrap cookie-banner__inner">
+    <p>We gebruiken Google Analytics om te zien hoe bezoekers onze website gebruiken. Dat doen we enkel met jouw toestemming. Lees meer in ons <a href="cookiebeleid.html">cookiebeleid</a>.</p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--ghost btn--sm" id="cookieDecline">Weigeren</button>
+      <button type="button" class="btn btn--signal btn--sm" id="cookieAccept">Accepteren</button>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>

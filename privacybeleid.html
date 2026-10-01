@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+<!-- Google tag (gtag.js) + Consent Mode v2: laadt op elke pagina, maar zet
+     pas cookies/gegevens door nadat de cookiebanner toestemming geeft.
+     De standaardstatus hieronder komt overeen met de keuze die de bezoeker
+     eerder al maakte (via lokale opslag), zodat een terugkerende bezoeker
+     niet opnieuw als "geweigerd" start. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDMTXF27YJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function () {
+    var consent = "denied";
+    try {
+      if (window.localStorage.getItem("ss_cookie_consent") === "accepted") consent = "granted";
+    } catch (e) {}
+    gtag("consent", "default", {
+      ad_storage: consent,
+      ad_user_data: consent,
+      ad_personalization: consent,
+      analytics_storage: consent
+    });
+  })();
+  gtag("js", new Date());
+  gtag("config", "G-ZDMTXF27YJ", { anonymize_ip: true });
+  gtag("config", "AW-18058037828");
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacybeleid | Super Storage</title>
@@ -68,7 +93,7 @@
         <p><strong>Toegang tot het gebouw.</strong> Je krijgt een persoonlijke toegangscode. Het toegangssysteem registreert wanneer die code wordt gebruikt. We doen dat om het gebouw en de goederen van alle huurders te beveiligen (gerechtvaardigd belang, artikel 6.1.f AVG).</p>
         <p><strong>Camerabewaking.</strong> Het gebouw wordt rondom en binnen bewaakt met camera's, en elk slot van de opslagruimtes is voorzien van een camera. We doen dat om inbraak, diefstal en vandalisme te voorkomen en vast te stellen, en om de veiligheid van huurders en hun goederen te garanderen (gerechtvaardigd belang, artikel 6.1.f AVG). De camerabewaking gebeurt volgens de Belgische camerawet van 21 maart 2007: aan de ingangen hangt een pictogram dat op de camerabewaking wijst, en de camera's zijn aangegeven bij de politie. De beelden worden maximaal één maand bewaard, tenzij ze nodig zijn als bewijs van een misdrijf, schade of overlast. Alleen Super Storage heeft toegang tot de beelden, en ze worden enkel doorgegeven aan de politie of het gerecht als dat nodig is.</p>
         <p><strong>Als je contact met ons opneemt.</strong> Neem je contact op via e-mail, telefoon of WhatsApp, dan gebruiken we je naam, contactgegevens en je bericht om je vraag te beantwoorden (maatregelen op jouw verzoek vóór een overeenkomst, of ons gerechtvaardigd belang om vragen te beantwoorden).</p>
-        <p><strong>Als je de website bezoekt.</strong> Onze hostingprovider registreert technische gegevens, zoals je IP-adres en het tijdstip van je bezoek, in serverlogbestanden. Dat is nodig om de website veilig en werkend te houden (gerechtvaardigd belang). We gebruiken geen analyse- of advertentiecookies. Meer daarover lees je in ons <a href="cookiebeleid.html">cookiebeleid</a>.</p>
+        <p><strong>Als je de website bezoekt.</strong> Onze hostingprovider registreert technische gegevens, zoals je IP-adres en het tijdstip van je bezoek, in serverlogbestanden. Dat is nodig om de website veilig en werkend te houden (gerechtvaardigd belang). Geef je daarnaast toestemming via onze cookiebanner, dan gebruiken we Google Analytics om te meten hoe bezoekers onze website gebruiken en om te meten of onze Google Ads-advertenties tot een boeking leiden (conversiemeting), zodat we onze website en advertenties kunnen verbeteren (toestemming, artikel 6.1.a AVG). Weiger je, dan staat Google's meetscript (via Google Consent Mode) op "geweigerd" en worden er geen cookies geplaatst of gegevens over jou verzonden. Meer daarover lees je in ons <a href="cookiebeleid.html">cookiebeleid</a>.</p>
         <p>We gebruiken je gegevens niet voor geautomatiseerde besluitvorming of profilering, en we verkopen ze nooit aan derden.</p>
 
         <h2>3. Met wie delen we je gegevens?</h2>
@@ -78,12 +103,13 @@
           <li><strong>Onze hostingprovider:</strong> DeltaBlue, voor het hosten van de website.</li>
           <li><strong>Betaaldienstverlener:</strong> Mollie, voor de verwerking van online betalingen en domiciliëringen.</li>
           <li><strong>Onze boekhouder:</strong> Finvision Hasselt, voor de boekhouding en fiscale aangiftes.</li>
+          <li><strong>Google Analytics en Google Ads (Google Ireland Limited):</strong> voor website-statistieken en om te meten of onze zoekadvertenties tot een bezoek of boeking leiden (via de Google Ads-conversietag), enkel als je daarvoor toestemming hebt gegeven via onze cookiebanner.</li>
           <li><strong>Overheden of politie</strong>, als de wet ons daartoe verplicht.</li>
         </ul>
         <p>Met deze dienstverleners hebben we, waar nodig, verwerkersovereenkomsten gesloten. Neem je contact op via WhatsApp, dan verwerkt ook Meta (WhatsApp) je gegevens volgens haar eigen privacybeleid.</p>
 
         <h2>4. Worden je gegevens buiten de EU verwerkt?</h2>
-        <p>We streven ernaar je gegevens binnen de Europese Economische Ruimte te laten verwerken. Worden ze toch doorgegeven naar een land buiten de EER, bijvoorbeeld via WhatsApp, dan gebeurt dat alleen met passende waarborgen, zoals een adequaatheidsbesluit van de Europese Commissie of de standaardcontractbepalingen.</p>
+        <p>We streven ernaar je gegevens binnen de Europese Economische Ruimte te laten verwerken. Worden ze toch doorgegeven naar een land buiten de EER, bijvoorbeeld via WhatsApp of, als je daarvoor toestemming gaf, via Google Analytics, dan gebeurt dat alleen met passende waarborgen, zoals een adequaatheidsbesluit van de Europese Commissie (zoals het EU-VS Data Privacy Framework) of de standaardcontractbepalingen.</p>
 
         <h2>5. Hoelang bewaren we je gegevens?</h2>
         <ul>
@@ -92,6 +118,7 @@
           <li><strong>Toegangsregistraties:</strong> één maand.</li>
           <li><strong>Camerabeelden:</strong> maximaal één maand, tenzij ze nodig zijn als bewijs van een incident.</li>
           <li><strong>Contactberichten:</strong> tot je vraag is afgehandeld, en maximaal één jaar daarna, tenzij er een overeenkomst uit volgt.</li>
+          <li><strong>Analytics-gegevens</strong> (enkel als je toestemming gaf): standaard 14 maanden, volgens de instellingen van Google Analytics.</li>
         </ul>
 
         <h2>6. Hoe beveiligen we je gegevens?</h2>
@@ -153,10 +180,20 @@
     </div>
     <div class="footer__bottom">
       <span>&copy; <span id="jaartal">2026</span> Super Storage — Fastgoed BV — BTW BE 0628.981.850 — Millerdries 7a, 3770 Riemst</span>
-      <span><a href="algemene-voorwaarden.html" style="color:#c7d3e6">Algemene voorwaarden</a> · <a href="privacybeleid.html" style="color:#c7d3e6">Privacybeleid</a> · <a href="cookiebeleid.html" style="color:#c7d3e6">Cookiebeleid</a></span>
+      <span><a href="algemene-voorwaarden.html" >Algemene voorwaarden</a> · <a href="privacybeleid.html" >Privacybeleid</a> · <a href="cookiebeleid.html" >Cookiebeleid</a> · <button type="button" id="cookieSettingsBtn" class="footer__cookie-btn">Cookie-instellingen</button></span>
     </div>
   </div>
 </footer>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookievoorkeuren" hidden>
+  <div class="wrap cookie-banner__inner">
+    <p>We gebruiken Google Analytics om te zien hoe bezoekers onze website gebruiken. Dat doen we enkel met jouw toestemming. Lees meer in ons <a href="cookiebeleid.html">cookiebeleid</a>.</p>
+    <div class="cookie-banner__actions">
+      <button type="button" class="btn btn--ghost btn--sm" id="cookieDecline">Weigeren</button>
+      <button type="button" class="btn btn--signal btn--sm" id="cookieAccept">Accepteren</button>
+    </div>
+  </div>
+</div>
 
 <script src="assets/js/main.js"></script>
 </body>
