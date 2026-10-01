@@ -142,6 +142,96 @@
     }
   }
 
+  /* ---------- cookiebanner + Google Consent Mode v2 ----------
+     De Google-tag (GA4 + Ads-conversietag) staat in <head> van elke pagina
+     en laadt altijd — dat is vereist voor Consent Mode, zodat het script de
+     gclid (advertentie-klik-ID) uit de landingspagina kan opvangen. Vóór die
+     tag staat telkens al een "consent default"-signaal op "denied", dus er
+     worden geen cookies gezet of gegevens verstuurd zolang er geen
+     toestemming is. Hier sturen we enkel het "update"-signaal zodra de
+     bezoeker een keuze maakt in de banner. */
+  var CONSENT_KEY = "ss_cookie_consent";
+
+  function getConsent() {
+    try {
+      return window.localStorage.getItem(CONSENT_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setConsent(value) {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, value);
+    } catch (e) {
+      /* private browsing of opslag uitgeschakeld: volgende bezoek opnieuw vragen */
+    }
+  }
+
+  function updateConsent(granted) {
+    if (typeof window.gtag !== "function") return;
+    var state = granted ? "granted" : "denied";
+    window.gtag("consent", "update", {
+      ad_storage: state,
+      ad_user_data: state,
+      ad_personalization: state,
+      analytics_storage: state
+    });
+  }
+
+  var cookieBanner = document.getElementById("cookieBanner");
+  var cookieAccept = document.getElementById("cookieAccept");
+  var cookieDecline = document.getElementById("cookieDecline");
+  var cookieSettingsBtn = document.getElementById("cookieSettingsBtn");
+
+  if (cookieBanner) {
+    var consent = getConsent();
+    if (consent !== "accepted" && consent !== "declined") {
+      cookieBanner.hidden = false;
+    }
+    /* Bij "accepted" staat Consent Mode al op "granted" dankzij het
+       head-script (dat de opgeslagen keuze als default-status meegeeft),
+       dus hier hoeft niets herhaald te worden. */
+
+    if (cookieAccept) {
+      cookieAccept.addEventListener("click", function () {
+        setConsent("accepted");
+        updateConsent(true);
+        cookieBanner.hidden = true;
+      });
+    }
+    if (cookieDecline) {
+      cookieDecline.addEventListener("click", function () {
+        setConsent("declined");
+        updateConsent(false);
+        cookieBanner.hidden = true;
+      });
+    }
+  }
+
+  if (cookieSettingsBtn && cookieBanner) {
+    cookieSettingsBtn.addEventListener("click", function () {
+      cookieBanner.hidden = false;
+    });
+  }
+
+  /* ---------- click-to-load Google Maps (avoids setting Google cookies
+     until the visitor explicitly asks for the map) ---------- */
+  var mapPlaceholder = document.getElementById("mapPlaceholder");
+  var loadMapBtn = document.getElementById("loadMapBtn");
+  if (mapPlaceholder && loadMapBtn) {
+    loadMapBtn.addEventListener("click", function () {
+      var src = mapPlaceholder.getAttribute("data-map-src");
+      var iframe = document.createElement("iframe");
+      iframe.className = "map";
+      iframe.title = "Kaart met de ligging van Super Storage, Prinsenweg 59 in Tongeren";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.src = src;
+      mapPlaceholder.replaceWith(iframe);
+    });
+  }
+
   /* ---------- photo lightbox ---------- */
   var lightboxImgs = Array.prototype.slice.call(document.querySelectorAll(".lightbox-img"));
   var lightbox = document.getElementById("lightbox");
