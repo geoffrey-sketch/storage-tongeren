@@ -12,8 +12,9 @@
   --navy-2: #112a47;
   --navy-3: #16365c;
   --navy-4: #081627;
-  --cta: #fd7e14;
-  --cta-dark: #cf6710;
+  --cta: #ff9f4d;
+  --cta-dark: #d1823f;
+  --cta-text: #1a1310;
   --ink: #0b1e33;
   --ink-soft: #445269;
   --paper: #f4f7fc;
@@ -142,12 +143,12 @@ img {
 
 .btn--signal {
   background: var(--cta);
-  color: var(--navy);
+  color: var(--cta-text);
 }
 
 .btn--signal:hover {
   background: var(--cta-dark);
-  color: var(--navy);
+  color: var(--cta-text);
   box-shadow: 0 8px 20px -8px rgba(242, 102, 29, 0.55);
 }
 
@@ -187,7 +188,7 @@ img {
 
 .promo-banner {
   background: var(--cta);
-  color: var(--navy);
+  color: var(--cta-text);
 }
 
 .promo-banner .wrap {
@@ -202,7 +203,7 @@ img {
 }
 
 .promo-banner a {
-  color: var(--navy);
+  color: var(--cta-text);
   text-decoration: underline;
 }
 
@@ -266,7 +267,7 @@ img {
 
 .nav a.btn,
 .nav a.btn:hover {
-  color: var(--navy);
+  color: var(--cta-text);
 }
 
 .header-cta {
