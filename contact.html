@@ -30,11 +30,66 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact | Super Storage</title>
 <meta name="description" content="Bel, mail of WhatsApp Super Storage, Prinsenweg 59 in Tongeren. Of vraag een rondleiding aan voor je boekt.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Super Storage">
+<meta property="og:locale" content="nl_BE">
+<meta property="og:title" content="Contact | Super Storage">
+<meta property="og:description" content="Bel, mail of WhatsApp Super Storage, Prinsenweg 59 in Tongeren. Of vraag een rondleiding aan voor je boekt.">
+<meta property="og:url" content="https://www.superstorage.be/contact.html">
+<meta property="og:image" content="https://www.superstorage.be/assets/img/foto2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://www.superstorage.be/contact.html">
+<link rel="alternate" hreflang="nl" href="https://www.superstorage.be/contact.html">
+<link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/contact.html">
+<link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/contact.html">
+<link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/contact.html">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SelfStorage",
+  "name": "Super Storage",
+  "legalName": "Fastgoed BV",
+  "vatID": "BE0628981850",
+  "url": "https://www.superstorage.be/",
+  "logo": "https://www.superstorage.be/assets/img/logo.svg",
+  "image": "https://www.superstorage.be/assets/img/foto2.jpg",
+  "telephone": "+32456834966",
+  "email": "info@superstorage.be",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Prinsenweg 59",
+    "postalCode": "3700",
+    "addressLocality": "Tongeren",
+    "addressCountry": "BE"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59",
+    "description": "Toegang voor huurders met persoonlijke code, 24 uur per dag, 7 dagen per week."
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Tongeren"
+  },
+  "sameAs": []
+}
+</script>
 </head>
 <body>
 <a class="skip" href="#inhoud">Naar de inhoud</a>
@@ -63,6 +118,7 @@
       <a href="over-ons.html">Over ons</a>
       <a href="contact.html" aria-current="page">Contact</a>
       <a class="btn btn--signal btn--sm" href="https://beheer.myyounit.nl/checkout/fastgoed-bv/blOBJDpx" target="_blank" rel="noopener">Boek nu</a>
+      <span class="lang-switch"><span class="lang-switch__current" aria-current="true">NL</span> &middot; <a href="fr/contact.html">FR</a> &middot; <a href="en/contact.html">EN</a></span>
     </nav>
     <a class="btn btn--signal btn--sm header-cta" href="https://beheer.myyounit.nl/checkout/fastgoed-bv/blOBJDpx" target="_blank" rel="noopener">Boek nu</a>
   </div>
@@ -86,7 +142,7 @@
         <ul class="contactlist">
           <li><span class="key">Bellen</span><a href="tel:+32456834966">+32 456 83 49 66</a></li>
           <li><span class="key">WhatsApp</span><a href="https://wa.me/32456834966" target="_blank" rel="noopener">+32 456 83 49 66</a></li>
-          <li><span class="key">Mailen</span><a href="mailto:info@storagetongeren.be">info@storagetongeren.be</a></li>
+          <li><span class="key">Mailen</span><a href="mailto:info@superstorage.be">info@superstorage.be</a></li>
           <li><span class="key">Adres</span><a href="https://maps.app.goo.gl/3ZCP7gvYx8kv9LQF7" target="_blank" rel="noopener">Prinsenweg 59, 3700 Tongeren</a></li>
           <li><span class="key">Toegang tot je box</span><span>24 uur per dag, elke dag</span></li>
           <li><span class="key">Rondleiding of afspraak</span><span>Op afspraak, ook 's avonds</span></li>
@@ -112,8 +168,7 @@
       <div>
         <h2>Stuur een bericht</h2>
         <p>Laat je vraag achter, dan bellen of mailen we je terug. Meestal dezelfde werkdag.</p>
-        <!-- Zet hieronder bij action het adres van je formulierdienst (bv. Formspree) of laat je webbouwer het koppelen. -->
-        <form class="form" action="https://formspree.io/f/JOUW-FORMULIER-ID" method="POST">
+        <form class="form" id="contactForm" action="https://formspree.io/f/mnpnkoqa" method="POST">
           <div class="field">
             <label for="naam">Naam</label>
             <input id="naam" name="naam" type="text" autocomplete="name" required>
@@ -139,9 +194,12 @@
             <label for="bericht">Je bericht</label>
             <textarea id="bericht" name="bericht" rows="5" required></textarea>
           </div>
+          <!-- Honeypot tegen spambots: onzichtbaar voor mensen, Formspree weert inzendingen waarbij dit veld ingevuld is. -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
           <div>
             <button class="btn btn--primary" type="submit">Verstuur je bericht</button>
           </div>
+          <p class="form__status" id="formStatus" role="status" aria-live="polite" hidden></p>
           <p class="form__note">We gebruiken je gegevens enkel om je vraag te beantwoorden.</p>
         </form>
       </div>
@@ -183,7 +241,7 @@
         <ul class="footer__links">
           <li><a href="https://maps.app.goo.gl/3ZCP7gvYx8kv9LQF7" target="_blank" rel="noopener">Prinsenweg 59, 3700 Tongeren</a></li>
           <li><a href="tel:+32456834966">+32 456 83 49 66</a></li>
-          <li><a href="mailto:info@storagetongeren.be">info@storagetongeren.be</a></li>
+          <li><a href="mailto:info@superstorage.be">info@superstorage.be</a></li>
           <li><a href="https://wa.me/32456834966" target="_blank" rel="noopener">WhatsApp ons</a></li>
         </ul>
       </div>
