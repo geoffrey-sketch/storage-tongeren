@@ -13,24 +13,24 @@
     <loc>https://www.superstorage.be/opslagruimtes.html</loc>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.superstorage.be/opslagruimtes.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/opslagruimtes.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/opslagruimtes.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/espaces-de-stockage.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/storage-units.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/opslagruimtes.html"/>
   </url>
   <url>
     <loc>https://www.superstorage.be/hoe-het-werkt.html</loc>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.superstorage.be/hoe-het-werkt.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/hoe-het-werkt.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/hoe-het-werkt.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/comment-ca-marche.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/how-it-works.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/hoe-het-werkt.html"/>
   </url>
   <url>
     <loc>https://www.superstorage.be/over-ons.html</loc>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.superstorage.be/over-ons.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/over-ons.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/over-ons.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/a-propos.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/about-us.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/over-ons.html"/>
   </url>
   <url>
@@ -45,24 +45,24 @@
     <loc>https://www.superstorage.be/algemene-voorwaarden.html</loc>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.superstorage.be/algemene-voorwaarden.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/algemene-voorwaarden.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/algemene-voorwaarden.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/conditions-generales.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/terms-and-conditions.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/algemene-voorwaarden.html"/>
   </url>
   <url>
     <loc>https://www.superstorage.be/privacybeleid.html</loc>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.superstorage.be/privacybeleid.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/privacybeleid.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/privacybeleid.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/politique-de-confidentialite.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/privacy-policy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/privacybeleid.html"/>
   </url>
   <url>
     <loc>https://www.superstorage.be/cookiebeleid.html</loc>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="nl" href="https://www.superstorage.be/cookiebeleid.html"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/cookiebeleid.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/cookiebeleid.html"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.superstorage.be/fr/politique-de-cookies.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.superstorage.be/en/cookie-policy.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/cookiebeleid.html"/>
   </url>
   <url>
@@ -74,15 +74,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/"/>
   </url>
   <url>
-    <loc>https://www.superstorage.be/fr/opslagruimtes.html</loc>
+    <loc>https://www.superstorage.be/fr/espaces-de-stockage.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/fr/hoe-het-werkt.html</loc>
+    <loc>https://www.superstorage.be/fr/comment-ca-marche.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/fr/over-ons.html</loc>
+    <loc>https://www.superstorage.be/fr/a-propos.html</loc>
     <priority>0.5</priority>
   </url>
   <url>
@@ -90,15 +90,15 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/fr/algemene-voorwaarden.html</loc>
+    <loc>https://www.superstorage.be/fr/conditions-generales.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/fr/privacybeleid.html</loc>
+    <loc>https://www.superstorage.be/fr/politique-de-confidentialite.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/fr/cookiebeleid.html</loc>
+    <loc>https://www.superstorage.be/fr/politique-de-cookies.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
@@ -110,15 +110,15 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.superstorage.be/"/>
   </url>
   <url>
-    <loc>https://www.superstorage.be/en/opslagruimtes.html</loc>
+    <loc>https://www.superstorage.be/en/storage-units.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/en/hoe-het-werkt.html</loc>
+    <loc>https://www.superstorage.be/en/how-it-works.html</loc>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/en/over-ons.html</loc>
+    <loc>https://www.superstorage.be/en/about-us.html</loc>
     <priority>0.5</priority>
   </url>
   <url>
@@ -126,15 +126,15 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/en/algemene-voorwaarden.html</loc>
+    <loc>https://www.superstorage.be/en/terms-and-conditions.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/en/privacybeleid.html</loc>
+    <loc>https://www.superstorage.be/en/privacy-policy.html</loc>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://www.superstorage.be/en/cookiebeleid.html</loc>
+    <loc>https://www.superstorage.be/en/cookie-policy.html</loc>
     <priority>0.2</priority>
   </url>
 </urlset>

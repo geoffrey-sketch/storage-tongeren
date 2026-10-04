@@ -27,8 +27,8 @@ storage-tongeren/
 ├── algemene-voorwaarden.html   Terms and conditions
 ├── privacybeleid.html          Privacy policy
 ├── cookiebeleid.html           Cookie policy
-├── fr/                         French translations of all 9 pages above (same filenames)
-├── en/                         English translations of all 9 pages above (same filenames)
+├── fr/                         French translations of all 9 pages above (translated filenames — see below)
+├── en/                         English translations of all 9 pages above (translated filenames — see below)
 ├── assets/
 │   ├── css/style.css           All styling. Colours and fonts sit in :root at the top.
 │   ├── js/main.js              Mobile menu, size guide (localised), contact form, year in footer
@@ -42,8 +42,25 @@ storage-tongeren/
 
 ## The three languages
 
-- Every NL page at the root has a matching page at the same filename under `fr/` and `en/`,
-  e.g. `opslagruimtes.html` ↔ `fr/opslagruimtes.html` ↔ `en/opslagruimtes.html`.
+- Every NL page at the root has a matching page under `fr/` and `en/`, but the filename
+  itself is translated too, e.g. `opslagruimtes.html` ↔ `fr/espaces-de-stockage.html` ↔
+  `en/storage-units.html`. The one exception is `bedankt.html`, which keeps the same
+  filename in all three languages on purpose — it's the redirect target configured in the
+  MyYounit booking checkout and the URL Google Ads conversion tracking matches against, so
+  translating it would silently break those external integrations. Full map:
+
+  | NL (root)                | FR (`fr/`)                        | EN (`en/`)              |
+  |---------------------------|------------------------------------|--------------------------|
+  | `index.html`               | `index.html`                        | `index.html`               |
+  | `opslagruimtes.html`       | `espaces-de-stockage.html`          | `storage-units.html`       |
+  | `hoe-het-werkt.html`       | `comment-ca-marche.html`            | `how-it-works.html`        |
+  | `over-ons.html`            | `a-propos.html`                     | `about-us.html`             |
+  | `contact.html`             | `contact.html`                      | `contact.html`              |
+  | `bedankt.html`             | `bedankt.html` (unchanged, see above) | `bedankt.html` (unchanged) |
+  | `algemene-voorwaarden.html`| `conditions-generales.html`         | `terms-and-conditions.html` |
+  | `privacybeleid.html`       | `politique-de-confidentialite.html` | `privacy-policy.html`       |
+  | `cookiebeleid.html`        | `politique-de-cookies.html`         | `cookie-policy.html`        |
+
 - `fr/` and `en/` pages reference the shared `assets/` folder at the root via `../assets/...`.
 - Every page has a language switcher in the nav (`NL · FR · EN`) and `hreflang` tags in
   the `<head>` pointing to the other two versions plus `x-default` (Dutch).

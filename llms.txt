@@ -29,8 +29,8 @@ Super Storage is een handelsnaam van Fastgoed BV (BTW BE 0628.981.850, maatschap
 
 The entire site exists in three languages. The Dutch (nl) pages above are the primary, legally authoritative version — French and English are translations.
 
-- French: [Accueil](https://www.superstorage.be/fr/), [Espaces de stockage](https://www.superstorage.be/fr/opslagruimtes.html), [Comment ça marche](https://www.superstorage.be/fr/hoe-het-werkt.html), [À propos](https://www.superstorage.be/fr/over-ons.html), [Contact](https://www.superstorage.be/fr/contact.html).
-- English: [Home](https://www.superstorage.be/en/), [Storage units](https://www.superstorage.be/en/opslagruimtes.html), [How it works](https://www.superstorage.be/en/hoe-het-werkt.html), [About us](https://www.superstorage.be/en/over-ons.html), [Contact](https://www.superstorage.be/en/contact.html).
+- French: [Accueil](https://www.superstorage.be/fr/), [Espaces de stockage](https://www.superstorage.be/fr/espaces-de-stockage.html), [Comment ça marche](https://www.superstorage.be/fr/comment-ca-marche.html), [À propos](https://www.superstorage.be/fr/a-propos.html), [Contact](https://www.superstorage.be/fr/contact.html).
+- English: [Home](https://www.superstorage.be/en/), [Storage units](https://www.superstorage.be/en/storage-units.html), [How it works](https://www.superstorage.be/en/how-it-works.html), [About us](https://www.superstorage.be/en/about-us.html), [Contact](https://www.superstorage.be/en/contact.html).
 
 ## Opmerkingen voor geautomatiseerde samenvattingen
 

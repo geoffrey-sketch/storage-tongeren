@@ -7,6 +7,34 @@
 (function () {
   "use strict";
 
+  var LANG = (document.documentElement.lang || "nl").slice(0, 2);
+  if (LANG !== "fr" && LANG !== "en") LANG = "nl";
+  var LOCALE = { nl: "nl-BE", fr: "fr-BE", en: "en-GB" }[LANG];
+
+  var I18N = {
+    nl: {
+      refLabel: "25 m² referentie",
+      planAria: function (label) { return "Plattegrond van " + label + ", naast een stippellijn van 25 m² ter vergelijking"; },
+      sending: "Bezig met versturen …",
+      success: "Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op, meestal dezelfde werkdag.",
+      genericError: "Er ging iets mis bij het versturen. Probeer het opnieuw, of mail ons rechtstreeks op info@superstorage.be."
+    },
+    fr: {
+      refLabel: "25 m² de référence",
+      planAria: function (label) { return "Plan de " + label + ", à côté d'un carré en pointillés de 25 m² à titre de comparaison"; },
+      sending: "Envoi en cours …",
+      success: "Merci pour votre message ! Nous vous recontactons au plus vite, généralement le jour même.",
+      genericError: "Une erreur s'est produite lors de l'envoi. Réessayez, ou écrivez-nous directement à info@superstorage.be."
+    },
+    en: {
+      refLabel: "25 m² reference",
+      planAria: function (label) { return "Floor plan of " + label + ", next to a dashed 25 m² square for comparison"; },
+      sending: "Sending …",
+      success: "Thanks for your message! We'll get back to you as soon as possible, usually the same working day.",
+      genericError: "Something went wrong while sending. Please try again, or email us directly at info@superstorage.be."
+    }
+  }[LANG];
+
   /* ---------- footer year ---------- */
   var jaartal = document.getElementById("jaartal");
   if (jaartal) {
@@ -48,13 +76,30 @@
      All units are drawn from the same top-left corner (x=0, y=0) so they
      line up against the same 25 m² dashed reference square (5 m x 5 m)
      and stay easy to compare. */
-  var sizes = [
-    [0, 0, 1.5, 1, "1,5 m²", "Een extra kast: dozen, archief, seizoensspullen."],
-    [0, 0, 2, 2.5, "5 m²", "De inhoud van een kleine berging of zolder."],
-    [0, 0, 3, 4, "12 m²", "Een studio of één kamer volledig leeg."],
-    [0, 0, 4, 5, "20 m²", "De inboedel van een appartement met 2 slaapkamers."],
-    [0, 0, 5, 6, "30 m² en groter", "Een garage, wagen of de volledige inboedel van een huis."]
-  ];
+  var SIZES = {
+    nl: [
+      [0, 0, 1.5, 1, "1,5 m²", "Een extra kast: dozen, archief, seizoensspullen."],
+      [0, 0, 2, 2.5, "5 m²", "De inhoud van een kleine berging of zolder."],
+      [0, 0, 3, 4, "12 m²", "Een studio of één kamer volledig leeg."],
+      [0, 0, 4, 5, "20 m²", "De inboedel van een appartement met 2 slaapkamers."],
+      [0, 0, 5, 6, "30 m² en groter", "Een garage, wagen of de volledige inboedel van een huis."]
+    ],
+    fr: [
+      [0, 0, 1.5, 1, "1,5 m²", "Une armoire supplémentaire : cartons, archives, objets saisonniers."],
+      [0, 0, 2, 2.5, "5 m²", "Le contenu d'un petit débarras ou grenier."],
+      [0, 0, 3, 4, "12 m²", "Un studio ou une pièce entièrement vide."],
+      [0, 0, 4, 5, "20 m²", "Le mobilier d'un appartement 2 chambres."],
+      [0, 0, 5, 6, "30 m² et plus", "Un garage, une voiture ou tout le mobilier d'une maison."]
+    ],
+    en: [
+      [0, 0, 1.5, 1, "1.5 m²", "An extra cupboard: boxes, archives, seasonal items."],
+      [0, 0, 2, 2.5, "5 m²", "The contents of a small storage room or attic."],
+      [0, 0, 3, 4, "12 m²", "A fully empty studio or one room."],
+      [0, 0, 4, 5, "20 m²", "The furniture of a 2-bedroom apartment."],
+      [0, 0, 5, 6, "30 m² and up", "A garage, a car, or the entire contents of a house."]
+    ]
+  };
+  var sizes = SIZES[LANG];
 
   var optionsWrap = document.getElementById("maatwijzer-keuze");
   var stage = document.getElementById("maatwijzer-tekening");
@@ -65,13 +110,17 @@
     var PAD = 30; // px padding inside the drawing
     var VIEW = REF * SCALE + PAD * 2;
 
+    function fmtNum(n) {
+      var s = n.toString();
+      return LANG === "en" ? s : s.replace(".", ",");
+    }
+
     function drawSize(index) {
       var entry = sizes[index];
       var w = entry[2];
       var h = entry[3];
       var label = entry[4];
       var caption = entry[5];
-      var area = (w * h).toLocaleString("nl-BE", { maximumFractionDigits: 1 });
 
       var refPx = REF * SCALE;
       var unitWpx = w * SCALE;
@@ -80,14 +129,14 @@
       var originY = PAD;
 
       var svg =
-        '<svg viewBox="0 0 ' + VIEW + " " + VIEW + '" width="' + VIEW + '" height="' + VIEW + '" role="img" aria-label="Plattegrond van ' + label + ', naast een stippellijn van 25 m² ter vergelijking">' +
+        '<svg viewBox="0 0 ' + VIEW + " " + VIEW + '" width="' + VIEW + '" height="' + VIEW + '" role="img" aria-label="' + I18N.planAria(label) + '">' +
         // 25 m² dashed reference square
         '<rect x="' + originX + '" y="' + originY + '" width="' + refPx + '" height="' + refPx + '" fill="none" stroke="#c3cee3" stroke-width="2" stroke-dasharray="6 6" rx="4"></rect>' +
-        '<text x="' + (originX + refPx - 6) + '" y="' + (originY + refPx - 10) + '" text-anchor="end" font-size="13" fill="#8b98b3" font-family="IBM Plex Sans, sans-serif">25 m² referentie</text>' +
+        '<text x="' + (originX + refPx - 6) + '" y="' + (originY + refPx - 10) + '" text-anchor="end" font-size="13" fill="#8b98b3" font-family="IBM Plex Sans, sans-serif">' + I18N.refLabel + "</text>" +
         // the actual unit, same top-left corner
         '<rect x="' + originX + '" y="' + originY + '" width="' + unitWpx + '" height="' + unitHpx + '" fill="#e8eefc" stroke="#1450d8" stroke-width="2.5" rx="4"></rect>' +
         '<text x="' + (originX + unitWpx / 2) + '" y="' + (originY + unitHpx / 2 - 6) + '" text-anchor="middle" font-size="16" font-weight="700" fill="#0b1e33" font-family="Archivo, sans-serif">' + label + "</text>" +
-        '<text x="' + (originX + unitWpx / 2) + '" y="' + (originY + unitHpx / 2 + 14) + '" text-anchor="middle" font-size="12" fill="#445269" font-family="IBM Plex Sans, sans-serif">' + w.toString().replace(".", ",") + " x " + h.toString().replace(".", ",") + " m</text>" +
+        '<text x="' + (originX + unitWpx / 2) + '" y="' + (originY + unitHpx / 2 + 14) + '" text-anchor="middle" font-size="12" fill="#445269" font-family="IBM Plex Sans, sans-serif">' + fmtNum(w) + " x " + fmtNum(h) + " m</text>" +
         "</svg>";
 
       stage.innerHTML = svg + '<p class="sizer__caption"><strong>' + label + "</strong> — " + caption + "</p>";
@@ -102,7 +151,7 @@
         return (
           '<button type="button" class="sizer__option" aria-pressed="' + (i === 0 ? "true" : "false") + '" data-index="' + i + '">' +
           '<span class="sz">' + entry[4] + "</span>" +
-          '<span class="lbl">' + entry[2].toString().replace(".", ",") + " x " + entry[3].toString().replace(".", ",") + " m</span>" +
+          '<span class="lbl">' + fmtNum(entry[2]) + " x " + fmtNum(entry[3]) + " m</span>" +
           "</button>"
         );
       })
@@ -289,5 +338,55 @@
       if (lbPrev) lbPrev.style.display = "none";
       if (lbNext) lbNext.style.display = "none";
     }
+  }
+
+  /* ---------- contactformulier (Formspree, via fetch, blijft op de pagina) ---------- */
+  var contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    var formStatus = document.getElementById("formStatus");
+    var submitBtn = contactForm.querySelector("button[type='submit']");
+    var submitLabel = submitBtn ? submitBtn.textContent : "";
+
+    var showStatus = function (message, isError) {
+      formStatus.textContent = message;
+      formStatus.className = "form__status " + (isError ? "form__status--error" : "form__status--success");
+      formStatus.hidden = false;
+    };
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = I18N.sending;
+      }
+
+      fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            contactForm.reset();
+            showStatus(I18N.success, false);
+          } else {
+            return response.json().then(function (data) {
+              var message = data && data.errors && data.errors.length
+                ? data.errors.map(function (err) { return err.message; }).join(", ")
+                : I18N.genericError;
+              showStatus(message, true);
+            });
+          }
+        })
+        .catch(function () {
+          showStatus(I18N.genericError, true);
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitLabel;
+          }
+        });
+    });
   }
 })();
