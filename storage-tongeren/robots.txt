@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /bedankt.html
+Disallow: /fr/bedankt.html
+Disallow: /en/bedankt.html
+
+Sitemap: https://www.superstorage.be/sitemap.xml

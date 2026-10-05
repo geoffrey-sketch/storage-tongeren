@@ -1,0 +1,392 @@
+/* Storage Tongeren — site script
+   - Mobile menu toggle
+   - Size guide ("maatwijzer") on opslagruimtes.html and index.html
+   - Footer year
+   No dependencies. */
+
+(function () {
+  "use strict";
+
+  var LANG = (document.documentElement.lang || "nl").slice(0, 2);
+  if (LANG !== "fr" && LANG !== "en") LANG = "nl";
+  var LOCALE = { nl: "nl-BE", fr: "fr-BE", en: "en-GB" }[LANG];
+
+  var I18N = {
+    nl: {
+      refLabel: "25 m² referentie",
+      planAria: function (label) { return "Plattegrond van " + label + ", naast een stippellijn van 25 m² ter vergelijking"; },
+      sending: "Bezig met versturen …",
+      success: "Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op, meestal dezelfde werkdag.",
+      genericError: "Er ging iets mis bij het versturen. Probeer het opnieuw, of mail ons rechtstreeks op info@superstorage.be."
+    },
+    fr: {
+      refLabel: "25 m² de référence",
+      planAria: function (label) { return "Plan de " + label + ", à côté d'un carré en pointillés de 25 m² à titre de comparaison"; },
+      sending: "Envoi en cours …",
+      success: "Merci pour votre message ! Nous vous recontactons au plus vite, généralement le jour même.",
+      genericError: "Une erreur s'est produite lors de l'envoi. Réessayez, ou écrivez-nous directement à info@superstorage.be."
+    },
+    en: {
+      refLabel: "25 m² reference",
+      planAria: function (label) { return "Floor plan of " + label + ", next to a dashed 25 m² square for comparison"; },
+      sending: "Sending …",
+      success: "Thanks for your message! We'll get back to you as soon as possible, usually the same working day.",
+      genericError: "Something went wrong while sending. Please try again, or email us directly at info@superstorage.be."
+    }
+  }[LANG];
+
+  /* ---------- footer year ---------- */
+  var jaartal = document.getElementById("jaartal");
+  if (jaartal) {
+    jaartal.textContent = new Date().getFullYear();
+  }
+
+  /* ---------- mobile menu ---------- */
+  var toggle = document.querySelector(".nav-toggle");
+  var nav = document.getElementById("hoofdmenu");
+
+  if (toggle && nav) {
+    toggle.addEventListener("click", function () {
+      var isOpen = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
+
+    // Close the menu when a link inside it is clicked (handy on mobile)
+    nav.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+        toggle.setAttribute("aria-expanded", "false");
+        toggle.focus();
+      }
+    });
+  }
+
+  /* ---------- size guide ("maatwijzer") ----------
+     Every entry is [x, y, width, height, label] in metres, measured from
+     the top-left corner of the unit. Adjust these to the real unit sizes
+     once you have the list from myYounit — see README.md.
+     All units are drawn from the same top-left corner (x=0, y=0) so they
+     line up against the same 25 m² dashed reference square (5 m x 5 m)
+     and stay easy to compare. */
+  var SIZES = {
+    nl: [
+      [0, 0, 1.5, 1, "1,5 m²", "Een extra kast: dozen, archief, seizoensspullen."],
+      [0, 0, 2, 2.5, "5 m²", "De inhoud van een kleine berging of zolder."],
+      [0, 0, 3, 4, "12 m²", "Een studio of één kamer volledig leeg."],
+      [0, 0, 4, 5, "20 m²", "De inboedel van een appartement met 2 slaapkamers."],
+      [0, 0, 5, 6, "30 m² en groter", "Een garage, wagen of de volledige inboedel van een huis."]
+    ],
+    fr: [
+      [0, 0, 1.5, 1, "1,5 m²", "Une armoire supplémentaire : cartons, archives, objets saisonniers."],
+      [0, 0, 2, 2.5, "5 m²", "Le contenu d'un petit débarras ou grenier."],
+      [0, 0, 3, 4, "12 m²", "Un studio ou une pièce entièrement vide."],
+      [0, 0, 4, 5, "20 m²", "Le mobilier d'un appartement 2 chambres."],
+      [0, 0, 5, 6, "30 m² et plus", "Un garage, une voiture ou tout le mobilier d'une maison."]
+    ],
+    en: [
+      [0, 0, 1.5, 1, "1.5 m²", "An extra cupboard: boxes, archives, seasonal items."],
+      [0, 0, 2, 2.5, "5 m²", "The contents of a small storage room or attic."],
+      [0, 0, 3, 4, "12 m²", "A fully empty studio or one room."],
+      [0, 0, 4, 5, "20 m²", "The furniture of a 2-bedroom apartment."],
+      [0, 0, 5, 6, "30 m² and up", "A garage, a car, or the entire contents of a house."]
+    ]
+  };
+  var sizes = SIZES[LANG];
+
+  var optionsWrap = document.getElementById("maatwijzer-keuze");
+  var stage = document.getElementById("maatwijzer-tekening");
+
+  if (optionsWrap && stage) {
+    var SCALE = 76; // px per metre
+    var REF = 5; // 25 m² reference square = 5m x 5m
+    var PAD = 30; // px padding inside the drawing
+    var VIEW = REF * SCALE + PAD * 2;
+
+    function fmtNum(n) {
+      var s = n.toString();
+      return LANG === "en" ? s : s.replace(".", ",");
+    }
+
+    function drawSize(index) {
+      var entry = sizes[index];
+      var w = entry[2];
+      var h = entry[3];
+      var label = entry[4];
+      var caption = entry[5];
+
+      var refPx = REF * SCALE;
+      var unitWpx = w * SCALE;
+      var unitHpx = h * SCALE;
+      var originX = PAD;
+      var originY = PAD;
+
+      var svg =
+        '<svg viewBox="0 0 ' + VIEW + " " + VIEW + '" width="' + VIEW + '" height="' + VIEW + '" role="img" aria-label="' + I18N.planAria(label) + '">' +
+        // 25 m² dashed reference square
+        '<rect x="' + originX + '" y="' + originY + '" width="' + refPx + '" height="' + refPx + '" fill="none" stroke="#c3cee3" stroke-width="2" stroke-dasharray="6 6" rx="4"></rect>' +
+        '<text x="' + (originX + refPx - 6) + '" y="' + (originY + refPx - 10) + '" text-anchor="end" font-size="13" fill="#8b98b3" font-family="IBM Plex Sans, sans-serif">' + I18N.refLabel + "</text>" +
+        // the actual unit, same top-left corner
+        '<rect x="' + originX + '" y="' + originY + '" width="' + unitWpx + '" height="' + unitHpx + '" fill="#e8eefc" stroke="#1450d8" stroke-width="2.5" rx="4"></rect>' +
+        '<text x="' + (originX + unitWpx / 2) + '" y="' + (originY + unitHpx / 2 - 6) + '" text-anchor="middle" font-size="16" font-weight="700" fill="#0b1e33" font-family="Archivo, sans-serif">' + label + "</text>" +
+        '<text x="' + (originX + unitWpx / 2) + '" y="' + (originY + unitHpx / 2 + 14) + '" text-anchor="middle" font-size="12" fill="#445269" font-family="IBM Plex Sans, sans-serif">' + fmtNum(w) + " x " + fmtNum(h) + " m</text>" +
+        "</svg>";
+
+      stage.innerHTML = svg + '<p class="sizer__caption"><strong>' + label + "</strong> — " + caption + "</p>";
+
+      optionsWrap.querySelectorAll(".sizer__option").forEach(function (btn, i) {
+        btn.setAttribute("aria-pressed", i === index ? "true" : "false");
+      });
+    }
+
+    optionsWrap.innerHTML = sizes
+      .map(function (entry, i) {
+        return (
+          '<button type="button" class="sizer__option" aria-pressed="' + (i === 0 ? "true" : "false") + '" data-index="' + i + '">' +
+          '<span class="sz">' + entry[4] + "</span>" +
+          '<span class="lbl">' + fmtNum(entry[2]) + " x " + fmtNum(entry[3]) + " m</span>" +
+          "</button>"
+        );
+      })
+      .join("");
+
+    optionsWrap.querySelectorAll(".sizer__option").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        drawSize(parseInt(btn.getAttribute("data-index"), 10));
+      });
+    });
+
+    drawSize(0);
+  }
+
+  /* ---------- scroll reveal ---------- */
+  var revealEls = document.querySelectorAll(".reveal");
+  if (revealEls.length) {
+    if ("IntersectionObserver" in window) {
+      var revealObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+      );
+      revealEls.forEach(function (el) {
+        revealObserver.observe(el);
+      });
+    } else {
+      revealEls.forEach(function (el) {
+        el.classList.add("is-visible");
+      });
+    }
+  }
+
+  /* ---------- cookiebanner + Google Consent Mode v2 ----------
+     De Google-tag (GA4 + Ads-conversietag) staat in <head> van elke pagina
+     en laadt altijd — dat is vereist voor Consent Mode, zodat het script de
+     gclid (advertentie-klik-ID) uit de landingspagina kan opvangen. Vóór die
+     tag staat telkens al een "consent default"-signaal op "denied", dus er
+     worden geen cookies gezet of gegevens verstuurd zolang er geen
+     toestemming is. Hier sturen we enkel het "update"-signaal zodra de
+     bezoeker een keuze maakt in de banner. */
+  var CONSENT_KEY = "ss_cookie_consent";
+
+  function getConsent() {
+    try {
+      return window.localStorage.getItem(CONSENT_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function setConsent(value) {
+    try {
+      window.localStorage.setItem(CONSENT_KEY, value);
+    } catch (e) {
+      /* private browsing of opslag uitgeschakeld: volgende bezoek opnieuw vragen */
+    }
+  }
+
+  function updateConsent(granted) {
+    if (typeof window.gtag !== "function") return;
+    var state = granted ? "granted" : "denied";
+    window.gtag("consent", "update", {
+      ad_storage: state,
+      ad_user_data: state,
+      ad_personalization: state,
+      analytics_storage: state
+    });
+  }
+
+  var cookieBanner = document.getElementById("cookieBanner");
+  var cookieAccept = document.getElementById("cookieAccept");
+  var cookieDecline = document.getElementById("cookieDecline");
+  var cookieSettingsBtn = document.getElementById("cookieSettingsBtn");
+
+  if (cookieBanner) {
+    var consent = getConsent();
+    if (consent !== "accepted" && consent !== "declined") {
+      cookieBanner.hidden = false;
+    }
+    /* Bij "accepted" staat Consent Mode al op "granted" dankzij het
+       head-script (dat de opgeslagen keuze als default-status meegeeft),
+       dus hier hoeft niets herhaald te worden. */
+
+    if (cookieAccept) {
+      cookieAccept.addEventListener("click", function () {
+        setConsent("accepted");
+        updateConsent(true);
+        cookieBanner.hidden = true;
+      });
+    }
+    if (cookieDecline) {
+      cookieDecline.addEventListener("click", function () {
+        setConsent("declined");
+        updateConsent(false);
+        cookieBanner.hidden = true;
+      });
+    }
+  }
+
+  if (cookieSettingsBtn && cookieBanner) {
+    cookieSettingsBtn.addEventListener("click", function () {
+      cookieBanner.hidden = false;
+    });
+  }
+
+  /* ---------- click-to-load Google Maps (avoids setting Google cookies
+     until the visitor explicitly asks for the map) ---------- */
+  var mapPlaceholder = document.getElementById("mapPlaceholder");
+  var loadMapBtn = document.getElementById("loadMapBtn");
+  if (mapPlaceholder && loadMapBtn) {
+    loadMapBtn.addEventListener("click", function () {
+      var src = mapPlaceholder.getAttribute("data-map-src");
+      var iframe = document.createElement("iframe");
+      iframe.className = "map";
+      iframe.title = "Kaart met de ligging van Super Storage, Prinsenweg 59 in Tongeren";
+      iframe.loading = "lazy";
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.src = src;
+      mapPlaceholder.replaceWith(iframe);
+    });
+  }
+
+  /* ---------- photo lightbox ---------- */
+  var lightboxImgs = Array.prototype.slice.call(document.querySelectorAll(".lightbox-img"));
+  var lightbox = document.getElementById("lightbox");
+
+  if (lightboxImgs.length && lightbox) {
+    var lbImg = document.getElementById("lightboxImg");
+    var lbClose = lightbox.querySelector(".lightbox__close");
+    var lbPrev = lightbox.querySelector(".lightbox__prev");
+    var lbNext = lightbox.querySelector(".lightbox__next");
+    var lbIndex = 0;
+
+    function showLightbox(index) {
+      lbIndex = index;
+      lbImg.src = lightboxImgs[lbIndex].currentSrc || lightboxImgs[lbIndex].src;
+      lbImg.alt = lightboxImgs[lbIndex].alt || "";
+    }
+
+    function openLightbox(index) {
+      showLightbox(index);
+      lightbox.hidden = false;
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.style.overflow = "";
+    }
+
+    function stepLightbox(delta) {
+      showLightbox((lbIndex + delta + lightboxImgs.length) % lightboxImgs.length);
+    }
+
+    lightboxImgs.forEach(function (img, i) {
+      img.addEventListener("click", function () {
+        openLightbox(i);
+      });
+    });
+
+    if (lbClose) lbClose.addEventListener("click", closeLightbox);
+    if (lbPrev) lbPrev.addEventListener("click", function () { stepLightbox(-1); });
+    if (lbNext) lbNext.addEventListener("click", function () { stepLightbox(1); });
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") stepLightbox(-1);
+      if (e.key === "ArrowRight") stepLightbox(1);
+    });
+
+    if (lightboxImgs.length < 2) {
+      if (lbPrev) lbPrev.style.display = "none";
+      if (lbNext) lbNext.style.display = "none";
+    }
+  }
+
+  /* ---------- contactformulier (Formspree, via fetch, blijft op de pagina) ---------- */
+  var contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    var formStatus = document.getElementById("formStatus");
+    var submitBtn = contactForm.querySelector("button[type='submit']");
+    var submitLabel = submitBtn ? submitBtn.textContent : "";
+
+    var showStatus = function (message, isError) {
+      formStatus.textContent = message;
+      formStatus.className = "form__status " + (isError ? "form__status--error" : "form__status--success");
+      formStatus.hidden = false;
+    };
+
+    contactForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = I18N.sending;
+      }
+
+      fetch(contactForm.action, {
+        method: "POST",
+        body: new FormData(contactForm),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            contactForm.reset();
+            showStatus(I18N.success, false);
+          } else {
+            return response.json().then(function (data) {
+              var message = data && data.errors && data.errors.length
+                ? data.errors.map(function (err) { return err.message; }).join(", ")
+                : I18N.genericError;
+              showStatus(message, true);
+            });
+          }
+        })
+        .catch(function () {
+          showStatus(I18N.genericError, true);
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = submitLabel;
+          }
+        });
+    });
+  }
+})();
