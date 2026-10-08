@@ -34,6 +34,7 @@ storage-tongeren/
 │   ├── js/main.js              Mobile menu, size guide (localised), contact form, year in footer
 │   ├── css/fonts.css           Self-hosted web fonts
 │   └── img/                    Logo, favicons, photos (foto2/3/4.jpg)
+├── favicon.ico                 Favicon for Google (48px multiples are also in assets/img/)
 ├── sitemap.xml                 All NL/FR/EN URLs with hreflang annotations
 ├── robots.txt
 ├── llms.txt                    Plain-text site summary for AI crawlers
