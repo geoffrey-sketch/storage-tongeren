@@ -390,3 +390,21 @@
     });
   }
 })();
+
+/* Meet klikken op "Boek nu" (links naar het boekingsplatform) als GA4-gebeurtenis
+   "boek_nu_klik". Respecteert Consent Mode: zonder toestemming worden geen
+   cookies gebruikt. Markeer de gebeurtenis in GA4 als sleutelgebeurtenis. */
+(function () {
+  document.addEventListener("click", function (e) {
+    var el = e.target;
+    var link = el && el.closest ? el.closest('a[href*="beheer.myyounit.nl"]') : null;
+    if (!link || typeof window.gtag !== "function") return;
+    window.gtag("event", "boek_nu_klik", {
+      link_url: link.href,
+      link_text: (link.textContent || "").replace(/\s+/g, " ").trim().slice(0, 40),
+      page_path: window.location.pathname,
+      page_language: document.documentElement.lang || "",
+      transport_type: "beacon"
+    });
+  });
+})();
