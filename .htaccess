@@ -1,0 +1,19 @@
+# Super Storage: beveiligingsinstellingen
+# Geen mappenlijst tonen
+Options -Indexes
+
+# Gevoelige bestanden en verborgen bestanden blokkeren
+<FilesMatch "^\.(?!well-known)">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(md|zip|bak|sql|log|ini|sh)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=15552000"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+</IfModule>
